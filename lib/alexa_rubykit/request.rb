@@ -22,11 +22,11 @@ module AlexaRubykit
     session = AlexaRubykit::Session.new(json_request['session'])
     case json_request['request']['type']
       when /Launch/
-        @request = LaunchRequest.new(json_request['request']['requestId'])
+        @request = LaunchRequest.new(json_request['request']['requestId'], json_request['request']['timestamp'] )
       when /Intent/
-        @request = IntentRequest.new(json_request['request']['requestId'], json_request['request']['intent'])
+        @request = IntentRequest.new(json_request['request']['requestId'], json_request['request']['timestamp'], json_request['request']['intent'])
       when /SessionEnded/
-        @request = SessionEndedRequest.new(json_request['request']['requestId'], json_request['request']['reason'])
+        @request = SessionEndedRequest.new(json_request['request']['requestId'], json_request['request']['timestamp'], json_request['request']['reason'])
       else
         raise ArgumentError, 'Invalid Request Type.'
     end
