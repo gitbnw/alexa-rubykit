@@ -1,7 +1,7 @@
 # Session end request class.
 module AlexaRubykit
   class SessionEndedRequest < Request
-    attr_accessor :request_id, :reason, :type
+    attr_accessor :request_id, :timestamp, :reason, :type
 
     # TODO: Validate the reason.
     # We still don't know if all of the parameters in the request are required.
@@ -10,6 +10,7 @@ module AlexaRubykit
       raise ArgumentError, 'Request ID should exist on a Session Ended Request.' if request_id.nil?
       @type = 'SESSION_ENDED_REQUEST'
       @request_id = request_id
+      @timestamp = timestamp
       @reason = reason
     end
 
