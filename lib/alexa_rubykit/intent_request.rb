@@ -1,6 +1,6 @@
 module AlexaRubykit
   class IntentRequest < Request
-    attr_accessor :request_id, :intent, :name, :slots
+    attr_accessor :request_id, :timestamp, :intent, :name, :slots
 
     # We still don't know if all of the parameters in the request are required.
     # Checking for the presence of intent on an IntentRequest.
@@ -8,6 +8,7 @@ module AlexaRubykit
       raise ArgumentError, 'Intent should exist on an IntentRequest' if intent.nil?
       @type = 'INTENT_REQUEST'
       @request_id = request_id
+      @timestamp = timestamp
       @intent = intent
       @name = intent['name']
       @slots = intent['slots']
